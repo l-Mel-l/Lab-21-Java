@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 interface Subject {
-    void attach(Observer observer);
+    void pod(Observer observer);
     void Opov(String notification);
 }
 interface Observer {
@@ -10,7 +10,6 @@ interface Observer {
 }
 class User implements Observer {
     private String name;
-    private List<String> notifications = new ArrayList<>();
 
     public User(String name) {
         this.name = name;
@@ -19,7 +18,7 @@ class User implements Observer {
     @Override
     public void update(String notification) {
         System.out.println(name + ", Вы получили новое уведомление: " + notification);
-        notifications.add(notification);
+
     }
 }
 
@@ -32,7 +31,7 @@ class Group implements Subject {
     }
 
     @Override
-    public void attach(Observer observer) {
+    public void pod(Observer observer) {
         observers.add(observer);
     }
     @Override
@@ -56,19 +55,19 @@ public class Main {
 
         // Создание групп и добавление пользователей в них
         Group group1 = new Group("Grand Croos:Origin");
-        group1.attach(user1);
-        group1.attach(user2);
+        group1.pod(user1);
+        group1.pod(user2);
 
         Group group2 = new Group("Grand Croos:SDS");
-        group2.attach(user1);
-        group2.attach(user2);
+        group2.pod(user1);
+        group2.pod(user2);
 
         Group group3 = new Group("Honkai Impact");
-        group3.attach(user1);
-        group3.attach(user2);
+        group3.pod(user1);
+        group3.pod(user2);
 
         Group group4 = new Group("Hoi 4");
-        group4.attach(user2);
+        group4.pod(user2);
 
         // Оповещение всех пользователей о новых сообщениях в группах
         group1.Newpost("Новый пост в группе 'Grand Croos:Origin'");
